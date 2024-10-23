@@ -5,7 +5,7 @@ const Greeting = () => {
     const [timeOfTheDay,setTimeOfTheDay] = useState();
    let time = new Date();
    let hours = time.getHours()
-    console.log(hours);
+  
     useEffect(()=>{
         if(hours >= 6 && hours < 12){return setTimeOfTheDay("Good morning")}else if(hours >=12 && hours < 18){return setTimeOfTheDay("Good afternoon")}else{return setTimeOfTheDay("Good evening")}
 

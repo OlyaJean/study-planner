@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import relaxMusic from './../assets/relax.mp3'
 
 const StudyTimer = () => {
 
@@ -10,9 +11,13 @@ const StudyTimer = () => {
    const [running,setRunning] = useState(false)
    const [pause,setPause] = useState(false)
  
+   const music = useRef()
+ 
 
    const studyUp = () => {
     setStudyTime(studyTime + 1)
+    studyTime >= 60 ? setStudyTime(60) : ''
+
    }
    const studyDown = () => {
     setStudyTime(studyTime - 1)
@@ -20,6 +25,7 @@ const StudyTimer = () => {
    }
    const breakUp = () => {
     setBreakTime(breakTime + 1)
+    breakTime >= 60 ? setBreakTime(60) : ''
    }
    const breakDown = () => {
     setBreakTime(breakTime - 1);
@@ -35,13 +41,14 @@ const StudyTimer = () => {
 
 const startTimer = () => {
   setPause(false);
-  setRunning(true)
+  setRunning(true);
+  message ? music.current.play() : music.current.pause()
 
   let interval = setInterval(()=>{
     clearInterval(interval)
 
     if(secs === 0){
-      if(mins !== 0){
+      if(mins !== 0 && mins <= 59){
         
         setSecs(59);
         setMins(mins - 1);
@@ -52,6 +59,7 @@ const startTimer = () => {
         setMins(mins);
         setSecs(secs);
         setMessage(!message);
+        !message ? music.current.play() : music.current.pause()
       }
     }else{
       setSecs(secs - 1)
@@ -64,6 +72,7 @@ const startTimer = () => {
 const pauseTimer = () => {
 setRunning(false)
 setPause(true)
+music.current.pause()
 }
 const stopTimer = () => {
   setPause(false);
@@ -71,12 +80,14 @@ const stopTimer = () => {
   message ? setMessage(!message) : setMessage(message)
   setMins(studyTime);
   setSecs(0)
+  music.current.pause()
 }
   
     useEffect(()=>{
       if(running && !pause){
         startTimer()}else if(!running && pause){
-          pauseTimer()
+          pauseTimer();
+          
         }else{stopTimer()}
       
     })
@@ -118,6 +129,7 @@ const stopTimer = () => {
       <button className='shadow-btnShadow w-16 rounded-xl p-2 active:shadow-none active:border-[0.5px] active:border-slate-400 text-emerald-800' onClick={()=>{startTimer()}}>start</button>
       <button className='shadow-btnShadow w-16 rounded-xl p-2 active:shadow-none active:border-[0.5px] active:border-slate-400 mx-5 text-yellow-600' onClick={()=>{pauseTimer()}}>pause</button>
       <button className='shadow-btnShadow w-16 rounded-xl p-2 active:shadow-none active:border-[0.5px] active:border-slate-400 text-red-900' onClick={()=>{stopTimer()}}>stop</button>
+      <audio src={relaxMusic} ref={music} type="audio/mp3" loop controls className='hidden'></audio>
     </div>
   )
 }

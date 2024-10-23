@@ -39,8 +39,8 @@ const delNote = (index) => {
       <h1>Is there anything you want to learn today?</h1>
      
       <form className='w-[100%]'>
-      <input type="text" placeholder='Learning subject...' className='rounded-xl px-2 bg-gray-200 shadow-btnShadow h-10 outline-none w-[70%]'  ref={noteInput} onChange={inputValue}/>
-      <button type='submit' className='shadow-btnShadow w-16 rounded-xl p-2  active:shadow-none active:border-[0.5px] active:border-slate-400 ml-5' onClick={()=>{saveNote()}}  onKeyDown={saveNoteOnKeyDown}>add</button>
+      <input type="text" placeholder='Learning subject...' className='rounded-xl px-2 bg-gray-200 shadow-btnShadow h-10 outline-none w-[70%] border-[1px]'  ref={noteInput} onChange={inputValue}/>
+      <button type='submit' className='shadow-btnShadow w-16 rounded-xl p-2  active:shadow-none active:border-[0.5px] active:border-slate-400 ml-5 mt-5' onClick={()=>{saveNote()}}  onKeyDown={saveNoteOnKeyDown}>add</button>
       </form>
     </div>
     {allValues.length > 0 && (<NotesShowcase allValues = {allValues} delNote={delNote}/>)}
