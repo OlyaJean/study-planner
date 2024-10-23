@@ -31,7 +31,12 @@ const StudyTimer = () => {
 
 
    const startTimer = () => {
-    
+   
+     setInterval(()=>{
+     secs === 0 ? setSecs(59) : '';
+     secs--
+
+    },1000)
    }
  
   return (
