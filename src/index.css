@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    margin:0;
+    padding:40px;
+    background: rgb(63, 84, 85);
+    background-attachment: fixed;
+    width:100vw;
+    height:100vh;
+    font-family:"Baskervville SC", serif; ;
+}
+
