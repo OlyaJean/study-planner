@@ -35,7 +35,7 @@ const delNote = (index) => {
 }
   return (
 <section className='md:w-2/3'>
-    <div className="bg-gray-300  text-center rounded-2xl p-5 shadow-shadow  items-center flex flex-col gap-2   md:mb-5 md:h-[150px]">
+    <div className="bg-gray-300  text-center rounded-2xl p-5 shadow-shadow  items-center flex flex-col gap-2   md:mb-5 md:h-[150px] lg:ml-5">
       <h1>Is there anything you want to learn today?</h1>
      
       <form className='w-[100%]'>
